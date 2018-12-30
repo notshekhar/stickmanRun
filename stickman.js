@@ -8,8 +8,8 @@ class StickMan {
     this.uy = this.lh-this.r
     this.dy = this.lh+this.r
     this.v = 0
-    this.da = 0.9
-    this.ua = -0.9
+    this.da = 2
+    this.ua = -2
     this.jumpLimit = this.r+140
   }
   showUp(ctx){
