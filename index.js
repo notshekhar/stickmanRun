@@ -2,6 +2,8 @@ let canvas = document.querySelector('#canvas')
 let ctx = canvas.getContext('2d')
 let stickman1 = new StickMan(canvas, 'black')
 let stickman2 = new StickMan(canvas, 'white')
+let pipe1 = new Pipe(canvas, 'black')
+let pipe2 = new Pipe(canvas, 'white')
 let tu = false
 let td = false
 
@@ -30,6 +32,8 @@ function draw(){
     stickman2.da = 0.9
     stickman2.dy = stickman2.lh+stickman2.r
   }
+  pipe1.showUp(ctx)
+  pipe2.showDown(ctx)
 }
 setInterval(()=>draw(), 16)
 
