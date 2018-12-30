@@ -2,7 +2,8 @@ let canvas = document.querySelector('#canvas')
 let ctx = canvas.getContext('2d')
 let stickman1 = new StickMan(canvas, 'black')
 let stickman2 = new StickMan(canvas, 'white')
-
+let tu = false
+let td = false
 
 function draw(){
   //cleaning upper half every time
@@ -15,14 +16,28 @@ function draw(){
   //drawing balls and everything else
   stickman1.showUp(ctx)
   stickman2.showDown(ctx)
+  stickman1.up(tu)
+  if(stickman1.uy > stickman1.lh-stickman1.r){
+    tu = false
+    stickman1.v = 0
+    stickman1.ua = -0.9
+    stickman1.uy = stickman1.lh-stickman1.r
+  }
+  stickman2.down(td)
+  if(stickman2.dy < stickman2.lh+stickman2.r){
+    td = false
+    stickman2.v = 0
+    stickman2.da = 0.9
+    stickman2.dy = stickman2.lh+stickman2.r
+  }
 }
-setInterval(()=>draw(), 1)
+setInterval(()=>draw(), 16)
 
 window.onkeydown = e =>{
-  console.log(e.keyCode)
+  // console.log(e.keyCode)
   if(e.keyCode == 38){
-    stickman1.up()
+    tu = true
   }else if(e.keyCode == 40){
-    stickman2.down()
+    td = true
   }
 }
