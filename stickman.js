@@ -23,27 +23,5 @@ class StickMan {
     ctx.arc(this.x, this.dy, this.r, 0, 2*Math.PI)
     ctx.fill()
   }
-  down(){
-    this.dy += this.v
-    this.v += this.a
-    if(this.dy>=this.lh+this.jumpLimit){
-      this.a = -0.9
-    }else if(this.dy < this.lh+this.r){
-      this.v = 0
-      this.dy = this.lh+this.r
-      this.a = 0
-    }
-  }
-  up(){
-    this.a = -0.9
-    this.dy += this.v
-    this.v += this.a
-    if(this.dy<=this.lh-this.jumpLimit){
-      this.a = 0.9
-    }else if(this.dy > this.lh-this.r){
-      this.v = 0
-      this.dy = this.lh-this.r
-      this.a = 0
-    }
-  }
+  
 }
