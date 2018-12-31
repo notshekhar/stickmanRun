@@ -2,16 +2,17 @@ class Pipe {
   constructor(canvas, color) {
     this.lw = canvas.width
     this.lh = canvas.height/2
-    this.x = math.random(this.lw, this.lw+this.lw/3)
+    this.x = math.random(this.lw, this.lw+this.lw/5)
     this.uy = math.random(this.lh/2, this.lh-20)
-    this.dy = math.random(20, this.lh/2)
-    this.width = math.random(10, 40)
+    this.lhy = this.lh - this.uy
+    this.dy = math.random(40, this.lh/2)
+    this.width = math.random(10, 35)
     this.color = color
     this.v = 3
   }
   showUp(ctx){
     ctx.fillStyle = this.color
-    ctx.fillRect(this.x, this.uy, this.width, this.lh-this.uy)
+    ctx.fillRect(this.x, this.uy, this.width, this.lhy)
     console.log()
   }
   showDown(ctx){
@@ -22,8 +23,23 @@ class Pipe {
     this.x -= this.v
   }
   offscreen(){
-    if(this.x < 0){
+    if(this.x+this.width < 0){
       return true
+    }
+  }
+  upHits(stickman){
+    if(stickman.uy>this.uy){
+      if(stickman.x>this.x && stickman.x<(this.x+this.width)){
+        return true
+      }
+    }
+  }
+  downHits(stickman){
+    // console.log(stickman.dy, this.lh+this.dy)
+    if(stickman.dy<this.lh+this.dy){
+      if(stickman.x>this.x && stickman.x<(this.x+this.width)){
+        return true
+      }
     }
   }
 }
